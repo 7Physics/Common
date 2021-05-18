@@ -18,6 +18,7 @@ public class Logger {
     private static final DateTimeFormatter NOW_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     private static PrintWriter logWriter;
     private static final List<String> filteredPackage = new ArrayList<>();
+    private static boolean showPackages = false;
 
     static {
         String today = TODAY_FORMATTER.format(LocalDateTime.now());
@@ -53,6 +54,13 @@ public class Logger {
      */
     public static void removeFilter(String packagePrefix) {
         filteredPackage.remove(packagePrefix);
+    }
+
+    /**
+     * Active l'affichage du nom des package des classes appelantes.
+     */
+    public static void showPackages() {
+        showPackages = true;
     }
 
     /**
@@ -96,23 +104,36 @@ public class Logger {
     private static void addMessage(String color, String type, String message) {
         StackTraceElement trace = Thread.currentThread().getStackTrace()[3];
         String clazz = trace.getClassName();
-        boolean matchFilters = filteredPackage.isEmpty();
-        for(String pack : filteredPackage) {
-            if(clazz.startsWith(pack)) {
-                matchFilters = true;
-                break;
-            }
-        }
-        if(!matchFilters) {
+        if(!matchFilters(clazz)) {
             return;
         }
         StringBuilder messageBuilder = new StringBuilder(message);
-        messageBuilder.insert(0, "[" + type + "] " + NOW_FORMATTER.format(LocalDateTime.now()) + " " + trace + " : ");
+        StringBuilder prefix = new StringBuilder("[" + type + "] " + NOW_FORMATTER.format(LocalDateTime.now()) + " ");
+        if(showPackages) {
+            prefix.append(clazz);
+        }else{
+            String[] parts = clazz.split("\\.");
+            prefix.append(parts[parts.length-1]);
+        }
+        prefix.append(".").append(trace.getMethodName()).append("(").append(trace.getFileName()).append(":").append(trace.getLineNumber()).append(")").append(" : ");
+        messageBuilder.insert(0,  prefix.toString());
         logWriter.println(messageBuilder.toString());
         if (color != null) {
             messageBuilder.insert(0, "\u001B[" + color + "m");
             messageBuilder.append("\u001B[0m");
         }
         System.out.println(messageBuilder.toString());
+    }
+
+    private static boolean matchFilters(String clazz) {
+        if(filteredPackage.isEmpty()) {
+            return true;
+        }
+        for(String pack : filteredPackage) {
+            if(clazz.startsWith(pack)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
