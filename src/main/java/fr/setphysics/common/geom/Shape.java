@@ -1,4 +1,4 @@
-package fr.setphysics.common.geom;
+package main.java.fr.setphysics.common.geom;
 
 import java.awt.*;
 import java.util.List;
@@ -11,6 +11,16 @@ public class Shape {
     private List<Vec3> vertices;
     /** Couleur de la forme */
     private Color color;
+
+    /**
+     * Construire une forme à partir des vecteurs et une couleur par défaut
+     */
+    public Shape() {
+        this.vertices = new List<Vec3>();
+        this.color = Color.GRAY;
+    }
+
+    //add vertices
 
     /**
      * Construire une forme à partir des vecteurs et une couleur par défaut

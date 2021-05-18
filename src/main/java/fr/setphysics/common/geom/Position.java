@@ -1,56 +1,55 @@
-package fr.setphysics.common.geom;
+package main.java.fr.setphysics.common.geom;
 
 /**
  * Position du centre de la forme
- * @param <T> type générique
  */
-public class Position<T> {
-    /** abscissaAngle angle sur l'axe des abscisses */
-    private double abscissaAngle;
-    /** ordinateAngle angle sur l'axe des ordonnées */
-    private double ordinateAngle;
+public class Position {
+    /** horizontalAngle angle sur l'axe des abscisses */
+    private double horizontalAngle;
+    /** verticalAngle angle sur l'axe des ordonnées */
+    private double verticalAngle;
     /** coords coordonnées */
-    private Vec3<T> coords;
+    private Vec3 coords;
 
     /**
      * Renvoi l'angle sur l'abscisse
-     * @return abscissaAngle
+     * @return horizontalAngle
      */
-    public double getAbscissaAngle() {
-        return abscissaAngle;
+    public double getHorizontalAngle() {
+        return horizontalAngle;
     }
 
     /**
      * Renvoi l'angle sur l'ordonnée
-     * @return ordinateAngle
+     * @return verticalAngle
      */
-    public double getOrdinateAngle() {
-        return ordinateAngle;
+    public double getVerticalAngle() {
+        return verticalAngle;
     }
 
     /**
      * Changer la valeur des angles
-     * @param abscissaAngle double
-     * @param ordinateAngle double
+     * @param horizontalAngle double
+     * @param verticalAngle double
      */
-    public void setAngles(double abscissaAngle, double ordinateAngle) {
-        this.abscissaAngle = abscissaAngle;
-        this.ordinateAngle = ordinateAngle;
+    public void setAngles(double horizontalAngle, double verticalAngle) {
+        this.horizontalAngle = horizontalAngle;
+        this.verticalAngle = verticalAngle;
     }
 
     /**
      * Renvoi les coordonnées
      * @return coords
      */
-    public Vec3<T> getCoords() {
+    public Vec3 getCoords() {
         return coords;
     }
 
     /**
      * Changer des coordonnées
-     * @param coords Vect3<T>
+     * @param coords Vect3
      */
-    public void setCoords(Vec3<T> coords) {
+    public void setCoords(Vec3 coords) {
         this.coords = coords;
     }
 }

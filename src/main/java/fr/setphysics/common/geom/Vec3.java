@@ -1,24 +1,23 @@
-package fr.setphysics.common.geom;
+package main.java.fr.setphysics.common.geom;
 
 /**
  * Vecteur à trois dimentions
- * @param <T> type générique
  */
-public class Vec3<T> {
-    /** x abscisse de type T */
-    private T x;
-    /** y ordonnée de type T */
-    private T y;
-    /** z altitude de type T */
-    private T z;
+public class Vec3 {
+    /** x abscisse */
+    private double x;
+    /** y ordonnée */
+    private double y;
+    /** z profondeur*/
+    private double z;
 
     /**
      * Construire un vecteur à trois dimentions avec des coordonnées
      * @param x abscisse
      * @param y ordonnée
-     * @param z altitude
+     * @param z profondeur
      */
-    public Vec3(T x, T y, T z) {
+    public Vec3(double x, double y, double z) {
         this.x = x;
         this.y = y;
         this.z = z;
