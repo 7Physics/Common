@@ -38,11 +38,11 @@ public class Position {
     }
 
     /**
-     * Renvoi les coordonnées
+     * Renvoi une copie du vecteur coordonnées
      * @return coords
      */
     public Vec3 getCoords() {
-        return coords;
+        return coords.clone();
     }
 
     /**
@@ -51,5 +51,63 @@ public class Position {
      */
     public void setCoords(Vec3 coords) {
         this.coords = coords;
+    }
+
+    /**
+     * Translate cette position
+     * @param translation translation
+     */
+    public void translate(Vec3 translation) {
+        this.coords.add(translation);
+    }
+
+    /**
+     * Translate cette position sur l'axe X
+     * @param offset
+     */
+    public void translateX(double offset) {
+        this.coords.addX(offset);
+    }
+
+    /**
+     * Translate cette position sur l'axe Y
+     * @param offset
+     */
+    public void translateY(double offset) {
+        this.coords.addY(offset);
+    }
+
+    /**
+     * Translate cette position sur l'axe X
+     * @param offset
+     */
+    public void translateZ(double offset) {
+        this.coords.addZ(offset);
+    }
+
+    /**
+     * Tourne l'objet verticalement.
+     * @param angle Angle en degrés.
+     */
+    public void rotateVertical(double angle) {
+        this.verticalAngle += angle;
+    }
+
+    /**
+     * Tourne l'objet horizontalement.
+     * @param angle Angle en degrés.
+     */
+    public void rotateHorizontal(double angle) {
+        this.horizontalAngle += angle;
+    }
+
+    /**
+     * Tourne l'objet.
+     * @param hAngle Angle horizontal en degrés.
+     * @param vAngle Angle vertical en degrés.
+     */
+    public void rotate(double hAngle, double vAngle) {
+        this.horizontalAngle += hAngle;
+        this.verticalAngle += vAngle;
     }
 }

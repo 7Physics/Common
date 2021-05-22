@@ -4,6 +4,10 @@ package fr.setphysics.common.geom;
  * Vecteur à trois dimensions
  */
 public class Vec3 implements Cloneable{
+    public static Vec3 ZERO() {
+        return new Vec3(0, 0, 0);
+    }
+
     /** x abscisse */
     private double x;
     /** y ordonnée */
@@ -27,20 +31,37 @@ public class Vec3 implements Cloneable{
      * Ajoute les coordonnées d'un autre vecteur à ce vecteur.
      * @param vec3 Vecteur à ajouter.
      */
-    public void add(Vec3 vec3) {
+    public Vec3 add(Vec3 vec3) {
         this.x += vec3.x;
         this.y += vec3.y;
         this.z += vec3.z;
+        return this;
+    }
+
+    public Vec3 addX(double x) {
+        this.x += x;
+        return this;
+    }
+
+    public Vec3 addY(double y) {
+        this.y += y;
+        return this;
+    }
+
+    public Vec3 addZ(double z) {
+        this.z += z;
+        return this;
     }
 
     /**
      * Multiplie les coordonnées de ce vecteur par un facteur.
      * @param factor Facteur de multiplication.
      */
-    public void scale(double factor) {
+    public Vec3 scale(double factor) {
         this.x *= factor;
         this.y *= factor;
         this.z *= factor;
+        return this;
     }
 
     /**
@@ -49,5 +70,14 @@ public class Vec3 implements Cloneable{
     @Override
     public Vec3 clone() {
         return new Vec3(this.x, this.y, this.z);
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "x=" + x +
+                ", y=" + y +
+                ", z=" + z +
+                '}';
     }
 }
