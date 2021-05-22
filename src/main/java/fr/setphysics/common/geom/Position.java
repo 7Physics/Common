@@ -1,4 +1,4 @@
-package main.java.fr.setphysics.common.geom;
+package fr.setphysics.common.geom;
 
 /**
  * Position du centre de la forme

@@ -1,26 +1,22 @@
-package main.java.fr.setphysics.common.geom;
+package fr.setphysics.common.geom;
 
-import java.awt.*;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
- * Forme en trois dimentions
+ * Forme en trois dimensions
  */
 public class Shape {
     /** Liste de vecteurs trois dimentions composant la forme */
     private List<Vec3> vertices;
-    /** Couleur de la forme */
-    private Color color;
 
     /**
      * Construire une forme à partir des vecteurs et une couleur par défaut
      */
     public Shape() {
-        this.vertices = new List<Vec3>();
-        this.color = Color.GRAY;
+        this.vertices = new ArrayList<>();
     }
-
-    //add vertices
 
     /**
      * Construire une forme à partir des vecteurs et une couleur par défaut
@@ -28,16 +24,21 @@ public class Shape {
      */
     public Shape(List<Vec3> vertices) {
         this.vertices = vertices;
-        this.color = Color.GRAY;
     }
 
     /**
-     * Construire une forme à partir des vecteurs et une couleur
-     * @param vertices liste des vecteurs
-     * @param color couleur de la forme
+     * Ajoute un sommet à la forme.
+     * @param vertex Sommet à ajouter.
      */
-    public Shape(List<Vec3> vertices, Color color) {
-        this.vertices = vertices;
-        this.color = color;
+    protected void addVertex(Vec3 vertex) {
+        this.vertices.add(vertex);
+    }
+
+    /**
+     * Obtenir une vue sur les sommets de cette forme.
+     * @return Liste non modifiable de sommets.
+     */
+    public List<Vec3> getVertices() {
+        return Collections.unmodifiableList(this.vertices);
     }
 }
