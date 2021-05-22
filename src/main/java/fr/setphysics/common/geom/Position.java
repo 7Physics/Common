@@ -11,6 +11,24 @@ public class Position {
     /** coords coordonnées */
     private Vec3 coords;
 
+    public Position(Vec3 coords, double horizontalAngle, double verticalAngle) {
+        this.coords = coords;
+        this.horizontalAngle = horizontalAngle;
+        this.verticalAngle = verticalAngle;
+    }
+
+    public Position(Vec3 coords) {
+        this(coords, 0, 0);
+    }
+
+    public Position(double x, double y, double z) {
+        this(x, y, z, 0, 0);
+    }
+
+    public Position(double x, double y, double z, double horizontalAngle, double verticalAngle) {
+        this(new Vec3(x, y, z), 0, 0);
+    }
+
     /**
      * Renvoi l'angle sur l'abscisse
      * @return horizontalAngle
@@ -45,9 +63,21 @@ public class Position {
         return coords.clone();
     }
 
+    public double getX() {
+        return coords.getX();
+    }
+
+    public double getY() {
+        return coords.getY();
+    }
+
+    public double getZ() {
+        return coords.getZ();
+    }
+
     /**
      * Changer des coordonnées
-     * @param coords Vect3
+     * @param coords Vec3
      */
     public void setCoords(Vec3 coords) {
         this.coords = coords;

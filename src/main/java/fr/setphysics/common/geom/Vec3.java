@@ -28,6 +28,30 @@ public class Vec3 implements Cloneable{
     }
 
     /**
+     * Obtenir l'abscisse de ce vecteur.
+     * @return
+     */
+    public double getX() {
+        return x;
+    }
+
+    /**
+     * Obtenir l'ordonnée de ce vecteur.
+     * @return
+     */
+    public double getY() {
+        return y;
+    }
+
+    /**
+     * Obtenir la profondeur de ce vecteur.
+     * @return
+     */
+    public double getZ() {
+        return z;
+    }
+
+    /**
      * Ajoute les coordonnées d'un autre vecteur à ce vecteur.
      * @param vec3 Vecteur à ajouter.
      */
