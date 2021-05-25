@@ -13,7 +13,7 @@ public class Spherical extends Shape {
 		super();
 		this.radius = radius;
 		List<Vec3> pointsList = new ArrayList<Vec3>();
-		double first_coords = radius / Math.sqrt(2);
+		double first_coords = radius / Math.sqrt(3);
 		Vec3 a = new Vec3(-first_coords, -first_coords, -first_coords);
 		Vec3 b = new Vec3(-first_coords, -first_coords, first_coords);
 		Vec3 c = new Vec3(first_coords, -first_coords, first_coords);
