@@ -23,7 +23,8 @@ public class Spherical extends Shape {
 		Vec3 f = new Vec3(-first_coords, first_coords, first_coords);
 		Vec3 g = new Vec3(first_coords, first_coords, first_coords);
 		Vec3 h = new Vec3(first_coords, first_coords, -first_coords);
-
+			
+		
 		// Face inférieure
 		pointsList.addAll(findPoints(a, b, c, d, nbIt));
 		// Face devant
@@ -36,8 +37,8 @@ public class Spherical extends Shape {
 		pointsList.addAll(findPoints(f, g, c, b, nbIt));
 		// Face droite
 		pointsList.addAll(findPoints(b, f, e, a, nbIt));
-
-		pointsList.forEach(p -> addVertex(p));
+		
+		pointsList.forEach(p -> addVertex(pointOnSphere(p)));
 	}
 	
 	private Vec3 pointOnSphere(Vec3 pointOnCube) {
@@ -55,39 +56,33 @@ public class Spherical extends Shape {
 		Vec3 mAD = new Vec3((a.getX() + d.getX()) / 2, (a.getY() + d.getY()) / 2, (a.getZ() + d.getZ()) / 2);
 		Vec3 mFace = new Vec3((mAB.getX() + mCD.getX()) / 2, (mAB.getY() + mCD.getY()) / 2,
 				(mAB.getZ() + mCD.getZ()) / 2);
-
-		Vec3 pAB = pointOnSphere(mAB);
-		Vec3 pBC = pointOnSphere(mBC);
-		Vec3 pCD = pointOnSphere(mCD);
-		Vec3 pAD = pointOnSphere(mAD);
-		Vec3 pFace = pointOnSphere(mFace);
 		
 		if(nbIt > 0) {
-			res.addAll(findPoints(pFace,pAD,a,pAB,nbIt-1));
-			res.addAll(findPoints(pFace,pAB,b,pBC,nbIt-1));
-			res.addAll(findPoints(pFace,pBC,c,pCD,nbIt-1));
-			res.addAll(findPoints(pFace,pCD,d,pAB,nbIt-1));
+			res.addAll(findPoints(mFace,mAD,a,mAB,nbIt-1));
+			res.addAll(findPoints(mFace,mAB,b,mBC,nbIt-1));
+			res.addAll(findPoints(mFace,mBC,c,mCD,nbIt-1));
+			res.addAll(findPoints(mFace,mCD,d,mAB,nbIt-1));
 			
 		} else {
-			res.add(pFace);
-			res.add(pAD);
+			res.add(mFace);
+			res.add(mAD);
 			res.add(a);
-			res.add(pAB);
+			res.add(mAB);
 
-			res.add(pFace);
-			res.add(pAB);
+			res.add(mFace);
+			res.add(mAB);
 			res.add(b);
-			res.add(pBC);
+			res.add(mBC);
 
-			res.add(pFace);
-			res.add(pBC);
+			res.add(mFace);
+			res.add(mBC);
 			res.add(c);
-			res.add(pCD);
+			res.add(mCD);
 
-			res.add(pFace);
-			res.add(pCD);
+			res.add(mFace);
+			res.add(mCD);
 			res.add(d);
-			res.add(pAD);
+			res.add(mAD);
 		}
 
 		return res;
