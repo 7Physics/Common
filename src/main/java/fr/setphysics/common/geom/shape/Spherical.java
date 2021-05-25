@@ -14,15 +14,15 @@ public class Spherical extends Shape {
 		this.radius = radius;
 		List<Vec3> pointsList = new ArrayList<Vec3>();
 		double first_coords = radius / Math.sqrt(2);
-		Vec3 a = new Vec3(-first_coords / 2, -first_coords / 2, -first_coords / 2);
-		Vec3 b = new Vec3(-first_coords / 2, -first_coords / 2, first_coords / 2);
-		Vec3 c = new Vec3(first_coords / 2, -first_coords / 2, first_coords / 2);
-		Vec3 d = new Vec3(first_coords / 2, -first_coords / 2, -first_coords / 2);
+		Vec3 a = new Vec3(-first_coords, -first_coords, -first_coords);
+		Vec3 b = new Vec3(-first_coords, -first_coords, first_coords);
+		Vec3 c = new Vec3(first_coords, -first_coords, first_coords);
+		Vec3 d = new Vec3(first_coords, -first_coords, -first_coords);
 
-		Vec3 e = new Vec3(-first_coords / 2, first_coords / 2, -first_coords / 2);
-		Vec3 f = new Vec3(-first_coords / 2, first_coords / 2, first_coords / 2);
-		Vec3 g = new Vec3(first_coords / 2, first_coords / 2, first_coords / 2);
-		Vec3 h = new Vec3(first_coords / 2, first_coords / 2, -first_coords / 2);
+		Vec3 e = new Vec3(-first_coords, first_coords, -first_coords);
+		Vec3 f = new Vec3(-first_coords, first_coords, first_coords);
+		Vec3 g = new Vec3(first_coords, first_coords, first_coords);
+		Vec3 h = new Vec3(first_coords, first_coords, -first_coords);
 
 		// Face inférieure
 		pointsList = findPoints(a, b, c, d);
