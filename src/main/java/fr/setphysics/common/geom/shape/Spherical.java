@@ -22,51 +22,49 @@ public class Spherical extends Shape {
 		Vec3 h = new Vec3(first_coords / 2, first_coords / 2, -first_coords / 2);
 
 		// Face inférieure
-		addVertex(a);
-		addVertex(b);
-		addVertex(c);
-		addVertex(d);
-		test = findPoints(a,b,c,d);
-		test.forEach(p -> addVertex(p));
+		test = findPoints(a, b, c, d);
 
 		// Face devant
-		addVertex(d);
-		addVertex(a);
-		addVertex(e);
-		addVertex(h);
-
+		test.addAll(findPoints(d, a, e, h));
 		// Face gauche
-		addVertex(h);
-		addVertex(d);
-		addVertex(c);
-		addVertex(g);
-
+		test.addAll(findPoints(h, d, c, g));
 		// Face supérieure
-		addVertex(g);
-		addVertex(h);
-		addVertex(e);
-		addVertex(f);
-
+		test.addAll(findPoints(g, h, e, f));
 		// Face derriere
-		addVertex(f);
-		addVertex(g);
-		addVertex(c);
-		addVertex(b);
-
+		test.addAll(findPoints(f, g, c, b));
 		// Face droite
-		addVertex(b);
-		addVertex(f);
-		addVertex(e);
-		addVertex(a);
+		test.addAll(findPoints(b, f, e, a));
 
+		test.forEach(p -> addVertex(p));
 	}
 
 	private List<Vec3> findPoints(Vec3 a, Vec3 b, Vec3 c, Vec3 d) {
 		List<Vec3> res = new ArrayList<Vec3>();
-		res.add(new Vec3((a.getX() + b.getX()) / 2, (a.getY() + b.getY()) / 2, (a.getZ() + b.getZ()) / 2));
-		res.add(new Vec3((b.getX() + c.getX()) / 2, (b.getY() + c.getY()) / 2, (b.getZ() + c.getZ()) / 2));
-		res.add(new Vec3((c.getX() + d.getX()) / 2, (c.getY() + d.getY()) / 2, (c.getZ() + d.getZ()) / 2));
-		res.add(new Vec3((a.getX() + d.getX()) / 2, (a.getY() + d.getY()) / 2, (a.getZ() + d.getZ()) / 2));
+		Vec3 p1 = new Vec3((a.getX() + b.getX()) / 2, (a.getY() + b.getY()) / 2, (a.getZ() + b.getZ()) / 2);
+		Vec3 p2 = new Vec3((b.getX() + c.getX()) / 2, (b.getY() + c.getY()) / 2, (b.getZ() + c.getZ()) / 2);
+		Vec3 p3 = new Vec3((c.getX() + d.getX()) / 2, (c.getY() + d.getY()) / 2, (c.getZ() + d.getZ()) / 2);
+		Vec3 p4 = new Vec3((a.getX() + d.getX()) / 2, (a.getY() + d.getY()) / 2, (a.getZ() + d.getZ()) / 2);
+		Vec3 p5 = new Vec3((p1.getX() + p3.getX()) / 2, (p1.getY() + p3.getY()) / 2, (p1.getZ() + p3.getZ()) / 2);
+		res.add(a);
+		res.add(p1);
+		res.add(p5);
+		res.add(p4);
+
+		res.add(p1);
+		res.add(b);
+		res.add(p2);
+		res.add(p5);
+
+		res.add(p5);
+		res.add(p2);
+		res.add(c);
+		res.add(p3);
+
+		res.add(p4);
+		res.add(p5);
+		res.add(p3);
+		res.add(d);
+
 		return res;
 	}
 }
