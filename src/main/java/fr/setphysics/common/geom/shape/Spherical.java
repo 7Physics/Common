@@ -9,7 +9,7 @@ import fr.setphysics.common.geom.Vec3;
 public class Spherical extends Shape {
 	private double radius;
 
-	public Spherical(double radius) {
+	public Spherical(double radius, int nbIt) {
 		super();
 		this.radius = radius;
 		List<Vec3> pointsList = new ArrayList<Vec3>();
@@ -25,17 +25,17 @@ public class Spherical extends Shape {
 		Vec3 h = new Vec3(first_coords, first_coords, -first_coords);
 
 		// Face inférieure
-		pointsList = findPoints(a, b, c, d, 3);
+		pointsList.addAll(findPoints(a, b, c, d, nbIt));
 		// Face devant
-		pointsList.addAll(findPoints(d, a, e, h, 3));
+		pointsList.addAll(findPoints(d, a, e, h, nbIt));
 		// Face gauche
-		pointsList.addAll(findPoints(h, d, c, g, 3));
+		pointsList.addAll(findPoints(h, d, c, g, nbIt));
 		// Face supérieure
-		pointsList.addAll(findPoints(g, h, e, f, 3));
+		pointsList.addAll(findPoints(g, h, e, f, nbIt));
 		// Face derriere
-		pointsList.addAll(findPoints(f, g, c, b, 3));
+		pointsList.addAll(findPoints(f, g, c, b, nbIt));
 		// Face droite
-		pointsList.addAll(findPoints(b, f, e, a, 3));
+		pointsList.addAll(findPoints(b, f, e, a, nbIt));
 
 		pointsList.forEach(p -> addVertex(p));
 	}
