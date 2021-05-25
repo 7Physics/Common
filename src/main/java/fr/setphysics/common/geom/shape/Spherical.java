@@ -58,10 +58,14 @@ public class Spherical extends Shape {
 				(mAB.getZ() + mCD.getZ()) / 2);
 		
 		if(nbIt > 0) {
-			res.addAll(findPoints(mFace,mAD,a,mAB,nbIt-1));
-			res.addAll(findPoints(mFace,mAB,b,mBC,nbIt-1));
+//			res.addAll(findPoints(mFace,mAD,a,mAB,nbIt-1));
+//			res.addAll(findPoints(mFace,mAB,b,mBC,nbIt-1));
+//			res.addAll(findPoints(mFace,mBC,c,mCD,nbIt-1));
+//			res.addAll(findPoints(mFace,mCD,d,mAB,nbIt-1));
+			res.addAll(findPoints(a,mAB,mFace,mAD,nbIt-1));
+			res.addAll(findPoints(mAB,b,mBC,mFace,nbIt-1));
 			res.addAll(findPoints(mFace,mBC,c,mCD,nbIt-1));
-			res.addAll(findPoints(mFace,mCD,d,mAB,nbIt-1));
+			res.addAll(findPoints(mAD,mFace,mCD,d,nbIt-1));
 			
 		} else {
 			res.add(mFace);
