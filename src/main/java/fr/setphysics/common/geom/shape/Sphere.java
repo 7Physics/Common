@@ -135,4 +135,9 @@ public class Sphere extends Shape {
 
 		return res;
 	}
+	
+    @Override
+    public double getMinY() {
+    	return this.radius;
+    }
 }
