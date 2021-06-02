@@ -41,4 +41,15 @@ public class Shape {
     public List<Vec3> getVertices() {
         return Collections.unmodifiableList(this.vertices);
     }
+    
+    public double getMinY() {
+    	double min = this.vertices.get(0).getY();
+    	for(int i = 1; i<this.vertices.size(); i++) {
+    		double currentY = this.vertices.get(i).getY();
+    		if(currentY < min) {
+    			min = currentY;
+    		}
+    	}
+    	return min;
+    }
 }
