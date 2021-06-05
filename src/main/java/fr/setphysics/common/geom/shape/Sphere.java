@@ -1,5 +1,8 @@
 package fr.setphysics.common.geom.shape;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import fr.setphysics.common.geom.Shape;
 import fr.setphysics.common.geom.Vec3;
 
@@ -24,6 +27,9 @@ public class Sphere extends Shape {
 		super();
 		this.radius = radius;
 
+		// Liste contenant tous les points a afficher
+		List<Vec3> pointsList = new ArrayList<Vec3>();
+
 		// Calcul des coordonnees du sommet du cube
 		double first_coords = radius / Math.sqrt(3);
 		Vec3 a = new Vec3(-first_coords, -first_coords, -first_coords);
@@ -37,20 +43,20 @@ public class Sphere extends Shape {
 		Vec3 h = new Vec3(first_coords, first_coords, -first_coords);
 
 		// Face inferieure
-		findPoints(a, b, c, d, nbIt);
+		pointsList.addAll(findPoints(a, b, c, d, nbIt));
 		// Face devant
-		findPoints(d, a, e, h, nbIt);
+		pointsList.addAll(findPoints(d, a, e, h, nbIt));
 		// Face gauche
-		findPoints(h, d, c, g, nbIt);
+		pointsList.addAll(findPoints(h, d, c, g, nbIt));
 		// Face superieure
-		findPoints(g, h, e, f, nbIt);
+		pointsList.addAll(findPoints(g, h, e, f, nbIt));
 		// Face derriere
-		findPoints(f, g, c, b, nbIt);
+		pointsList.addAll(findPoints(f, g, c, b, nbIt));
 		// Face droite
-		findPoints(b, f, e, a, nbIt);
+		pointsList.addAll(findPoints(b, f, e, a, nbIt));
 
 		// Ajout a la liste des vertex tous les points a afficher
-		this.vertices.forEach(p -> p = pointOnSphere(p));
+		pointsList.forEach(p -> addVertex(pointOnSphere(p)));
 	}
 
 	/**
@@ -80,7 +86,8 @@ public class Sphere extends Shape {
 	 * @param nbIt : nombre d'iterations requises
 	 * @return liste des points desormais present sur la face
 	 */
-	private void findPoints(Vec3 a, Vec3 b, Vec3 c, Vec3 d, int nbIt) {
+	private List<Vec3> findPoints(Vec3 a, Vec3 b, Vec3 c, Vec3 d, int nbIt) {
+		List<Vec3> res = new ArrayList<Vec3>();
 
 		// Calcul des coordonnees du milieu de chaque arete
 		Vec3 mAB = new Vec3((a.getX() + b.getX()) / 2, (a.getY() + b.getY()) / 2, (a.getZ() + b.getZ()) / 2);
@@ -95,44 +102,42 @@ public class Sphere extends Shape {
 		// Verification du nombre d'iterations restantes
 		if (nbIt > 1) {
 			// Appel recursif pour chacune des 4 parties trouvees
-			findPoints(a, mAB, mFace, mAD, nbIt - 1);
-			findPoints(mAB, b, mBC, mFace, nbIt - 1);
-			findPoints(mFace, mBC, c, mCD, nbIt - 1);
-			findPoints(mAD, mFace, mCD, d, nbIt - 1);
+			res.addAll(findPoints(a, mAB, mFace, mAD, nbIt - 1));
+			res.addAll(findPoints(mAB, b, mBC, mFace, nbIt - 1));
+			res.addAll(findPoints(mFace, mBC, c, mCD, nbIt - 1));
+			res.addAll(findPoints(mAD, mFace, mCD, d, nbIt - 1));
 
 		} else {
 			// Ajout de la partie superieure gauche
-//			res.add(mFace);
-//			res.add(mAD);
-//			res.add(a);
-//			res.add(mAB);
-			addSquare(mFace, mAD, a, mAB);
+			res.add(mFace);
+			res.add(mAD);
+			res.add(a);
+			res.add(mAB);
 
 			// Ajout de la partie superieure droite
-//			res.add(mFace);
-//			res.add(mAB);
-//			res.add(b);
-//			res.add(mBC);
-			addSquare(mFace, mAB, b, mBC);
+			res.add(mFace);
+			res.add(mAB);
+			res.add(b);
+			res.add(mBC);
 
 			// Ajout de la partie inferieure droite
-//			res.add(mFace);
-//			res.add(mBC);
-//			res.add(c);
-//			res.add(mCD);
-			addSquare(mFace, mBC, c, mCD);
+			res.add(mFace);
+			res.add(mBC);
+			res.add(c);
+			res.add(mCD);
 
 			// Ajout de la partie inferieure gauche
-//			res.add(mFace);
-//			res.add(mCD);
-//			res.add(d);
-//			res.add(mAD);
-			addSquare(mFace, mCD, d, mAD);
+			res.add(mFace);
+			res.add(mCD);
+			res.add(d);
+			res.add(mAD);
 		}
-	}
 
-	@Override
-	public double getMinY() {
-		return this.radius;
+		return res;
 	}
+	
+    @Override
+    public double getMinY() {
+    	return this.radius;
+    }
 }
