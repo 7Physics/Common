@@ -109,11 +109,6 @@ public class Sphere extends Shape {
 
 		} else {
 			// Ajout de la partie superieure gauche
-//			res.add(mFace);
-//			res.add(mAD);
-//			res.add(a);
-//			res.add(mAB);
-			
 			res.add(mFace);
 			res.add(mAD);
 			res.add(a);
@@ -123,11 +118,6 @@ public class Sphere extends Shape {
 			res.add(mAB);
 
 			// Ajout de la partie superieure droite
-//			res.add(mFace);
-//			res.add(mAB);
-//			res.add(b);
-//			res.add(mBC);
-			
 			res.add(mFace);
 			res.add(mAB);
 			res.add(b);
@@ -137,11 +127,6 @@ public class Sphere extends Shape {
 			res.add(mBC);
 
 			// Ajout de la partie inferieure droite
-//			res.add(mFace);
-//			res.add(mBC);
-//			res.add(c);
-//			res.add(mCD);
-			
 			res.add(mFace);
 			res.add(mBC);
 			res.add(c);
@@ -151,11 +136,6 @@ public class Sphere extends Shape {
 			res.add(mCD);
 
 			// Ajout de la partie inferieure gauche
-//			res.add(mFace);
-//			res.add(mCD);
-//			res.add(d);
-//			res.add(mAD);
-			
 			res.add(mFace);
 			res.add(mCD);
 			res.add(d);
