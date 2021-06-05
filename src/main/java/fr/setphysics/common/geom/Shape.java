@@ -42,6 +42,11 @@ public class Shape {
         return Collections.unmodifiableList(this.vertices);
     }
     
+    /**
+     * Obtenir la coordonnée Y minimale de la forme
+     * afin de pouvoir détecter le sol.
+     * @return la coordonnée Y minimale
+     */
     public double getMinY() {
     	double min = this.vertices.get(0).getY();
     	for(int i = 1; i<this.vertices.size(); i++) {
