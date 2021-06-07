@@ -73,16 +73,29 @@ public class Bounds implements Cloneable {
         return maxZ - minZ;
     }
 
+    public boolean intersect(Bounds other) {
+        return (this.minX <= other.maxX && this.maxX >= other.minX) &&
+                (this.minY <= other.maxY && this.maxY >= other.minY) &&
+                (this.minZ <= other.maxZ && this.maxZ >= other.minZ);
+    }
+
+    public boolean containsPoint(Vec3 point) {
+        return (point.getX() >= this.minX && point.getX() <= this.maxX) &&
+                (point.getY() >= this.minY && point.getY() <= this.maxY) &&
+                (point.getZ() >= this.minZ && point.getZ() <= this.maxZ);
+    }
+
     public Bounds translate(Vec3 translation) {
-        minX += translation.getX();
-        maxX += translation.getX();
+        Bounds rep = this.clone();
+        rep.minX += translation.getX();
+        rep.maxX += translation.getX();
 
-        minY += translation.getY();
-        maxY += translation.getY();
+        rep.minY += translation.getY();
+        rep.maxY += translation.getY();
 
-        minZ += translation.getZ();
-        maxZ += translation.getZ();
-        return this;
+        rep.minZ += translation.getZ();
+        rep.maxZ += translation.getZ();
+        return rep;
     }
 
     @Override
