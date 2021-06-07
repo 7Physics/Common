@@ -1,5 +1,7 @@
 package fr.setphysics.common.geom;
 
+import java.util.Objects;
+
 /**
  * Vecteur à trois dimensions
  */
@@ -98,6 +100,19 @@ public class Vec3 implements Cloneable{
         this.y *= factor;
         this.z *= factor;
         return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Vec3 vec3 = (Vec3) o;
+        return Double.compare(vec3.x, x) == 0 && Double.compare(vec3.y, y) == 0 && Double.compare(vec3.z, z) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(x, y, z);
     }
 
     /**
