@@ -75,6 +75,18 @@ public class Position {
         return coords.getZ();
     }
 
+    public void setX(double x) {
+        coords.setX(x);
+    }
+
+    public void setY(double y) {
+        coords.setY(y);
+    }
+
+    public void setZ(double z) {
+        coords.setZ(z);
+    }
+
     /**
      * Changer des coordonnées
      * @param coords Vec3
