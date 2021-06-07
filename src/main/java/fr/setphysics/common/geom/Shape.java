@@ -9,7 +9,7 @@ import java.util.List;
  */
 public class Shape {
     /** Liste de vecteurs trois dimentions composant la forme */
-    private List<Vec3> vertices;
+    protected List<Vec3> vertices;
 
     /**
      * Construire une forme à partir des vecteurs et une couleur par défaut
@@ -42,6 +42,11 @@ public class Shape {
         return Collections.unmodifiableList(this.vertices);
     }
     
+    /**
+     * Obtenir la coordonnée Y minimale de la forme
+     * afin de pouvoir détecter le sol.
+     * @return la coordonnée Y minimale
+     */
     public double getMinY() {
     	double min = this.vertices.get(0).getY();
     	for(int i = 1; i<this.vertices.size(); i++) {
@@ -51,5 +56,24 @@ public class Shape {
     		}
     	}
     	return min;
+    }
+    
+    /**
+     * Créer deux triangles à partir d'un carré.
+     * @param a premier sommet du carré
+     * @param b deuxieme sommet du carré
+     * @param c troisieme sommet du carré
+     * @param d quatrième sommet du carré
+     */
+    protected void addSquare(Vec3 a, Vec3 b, Vec3 c, Vec3 d) {
+    	// Premier triangle
+    	addVertex(a);
+    	addVertex(b);
+    	addVertex(c);
+    	
+    	// Deuxième triangle
+    	addVertex(a);
+    	addVertex(c);
+    	addVertex(d);
     }
 }
