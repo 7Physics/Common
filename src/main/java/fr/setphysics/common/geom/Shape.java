@@ -45,6 +45,10 @@ public class Shape {
         return Collections.unmodifiableList(this.vertices);
     }
 
+    /**
+     * Obtenir la boîte englobant la forme.
+     * @return
+     */
     public Bounds getBounds() {
         return bounds;
     }
