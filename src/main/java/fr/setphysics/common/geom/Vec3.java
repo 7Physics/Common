@@ -66,6 +66,20 @@ public class Vec3 implements Cloneable{
     }
 
     /**
+     * Retourne le produit vectoriel de ce vecteur par un autre
+     *
+     * @param other
+     * @return
+     */
+    public Vec3 multiply(Vec3 other) {
+        return new Vec3(
+                this.y * other.z - this.z * other.y,
+                this.z * other.x - this.x * other.z,
+                this.x * other.y - this.y * other.x
+        );
+    }
+
+    /**
      * Ajoute les coordonnées d'un autre vecteur à ce vecteur.
      * @param vec3 Vecteur à ajouter.
      */
