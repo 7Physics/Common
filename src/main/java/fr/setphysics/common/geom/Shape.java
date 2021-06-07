@@ -11,6 +11,8 @@ public class Shape {
     /** Liste de vecteurs trois dimentions composant la forme */
     private List<Vec3> vertices;
 
+    private final Bounds bounds = new Bounds();
+
     /**
      * Construire une forme à partir des vecteurs et une couleur par défaut
      */
@@ -32,6 +34,7 @@ public class Shape {
      */
     protected void addVertex(Vec3 vertex) {
         this.vertices.add(vertex);
+        this.bounds.addPoint(vertex);
     }
 
     /**
@@ -41,15 +44,8 @@ public class Shape {
     public List<Vec3> getVertices() {
         return Collections.unmodifiableList(this.vertices);
     }
-    
-    public double getMinY() {
-    	double min = this.vertices.get(0).getY();
-    	for(int i = 1; i<this.vertices.size(); i++) {
-    		double currentY = this.vertices.get(i).getY();
-    		if(currentY < min) {
-    			min = currentY;
-    		}
-    	}
-    	return min;
+
+    public Bounds getBounds() {
+        return bounds;
     }
 }

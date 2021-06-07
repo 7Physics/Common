@@ -66,9 +66,4 @@ public class Cuboid extends Shape {
         addVertex(e);
         addVertex(a);
     }
-    
-    @Override
-    public double getMinY() {
-    	return this.height/2.0;
-    }
 }
