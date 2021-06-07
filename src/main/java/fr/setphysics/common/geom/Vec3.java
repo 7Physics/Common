@@ -80,6 +80,17 @@ public class Vec3 implements Cloneable{
     }
 
     /**
+     * Soustraie les coordonnées d'un autre vecteur à ce vecteur.
+     * @param vec3 Vecteur à soustraire.
+     */
+    public Vec3 minus(Vec3 vec3) {
+        this.x -= vec3.x;
+        this.y -= vec3.y;
+        this.z -= vec3.z;
+        return this;
+    }
+
+    /**
      * Ajoute les coordonnées d'un autre vecteur à ce vecteur.
      * @param vec3 Vecteur à ajouter.
      */
