@@ -48,7 +48,7 @@ public class Cylinder extends Shape {
         // Rapport entre le rayon de la sphere et la distance entre le centre du cube et
         // le point donne en parametre
         double ratio = this.radius / Math.sqrt(
-                Math.pow(pointOnSquare.getX(), 2) + Math.pow(pointOnSquare.getY(), 2) + Math.pow(pointOnSquare.getZ(), 2));
+                Math.pow(pointOnSquare.getX(), 2) + Math.pow(pointOnSquare.getZ(), 2));
 
         return new Vec3(pointOnSquare.getX() * ratio, pointOnSquare.getY(), pointOnSquare.getZ() * ratio);
     }
