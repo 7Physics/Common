@@ -26,6 +26,9 @@ public class Shape {
      */
     public Shape(List<Vec3> vertices) {
         this.vertices = vertices;
+        for (Vec3 vertex : vertices) {
+            bounds.addPoint(vertex);
+        }
     }
 
     /**
