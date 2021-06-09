@@ -12,7 +12,7 @@ import fr.setphysics.common.geom.Vec3;
  * nouveau scindees en 4 et ainsi de suite. Chaque point trouve sera alors place
  * a equidistance du centre du cube originel.
  */
-public class Sphere extends Shape {
+public class Sphere extends RoundedFace {
 	// rayon de la sphere
 	private double radius;
 
@@ -56,17 +56,19 @@ public class Sphere extends Shape {
 		pointsList.addAll(findPoints(b, f, e, a, nbIt));
 
 		// Ajout a la liste des vertex tous les points a afficher
-		pointsList.forEach(p -> addVertex(pointOnSphere(p)));
+		pointsList.forEach(p -> addVertex(pointOnCircle(p, this.radius)));
 	}
 
 	/**
 	 * Positionnement d'un point sur la surface de la sphere a partir d'un point sur
 	 * la surface du cube.
+	 * Redefinition avec une sphere
 	 * 
 	 * @param pointOnCube : point present sur la surface du cube
 	 * @return point sur la surface de la sphere
 	 */
-	private Vec3 pointOnSphere(Vec3 pointOnCube) {
+	@Override
+	protected Vec3 pointOnCircle(Vec3 pointOnCube, double radius) {
 		// Rapport entre le rayon de la sphere et la distance entre le centre du cube et
 		// le point donne en parametre
 		double ratio = this.radius / Math.sqrt(
@@ -90,14 +92,13 @@ public class Sphere extends Shape {
 		List<Vec3> res = new ArrayList<Vec3>();
 
 		// Calcul des coordonnees du milieu de chaque arete
-		Vec3 mAB = new Vec3((a.getX() + b.getX()) / 2, (a.getY() + b.getY()) / 2, (a.getZ() + b.getZ()) / 2);
-		Vec3 mBC = new Vec3((b.getX() + c.getX()) / 2, (b.getY() + c.getY()) / 2, (b.getZ() + c.getZ()) / 2);
-		Vec3 mCD = new Vec3((c.getX() + d.getX()) / 2, (c.getY() + d.getY()) / 2, (c.getZ() + d.getZ()) / 2);
-		Vec3 mAD = new Vec3((a.getX() + d.getX()) / 2, (a.getY() + d.getY()) / 2, (a.getZ() + d.getZ()) / 2);
+		Vec3 mAB = findMiddle(a, b);
+		Vec3 mBC = findMiddle(b, c);
+		Vec3 mCD = findMiddle(c, d);
+		Vec3 mAD = findMiddle(a, d);
 
 		// Calcul des coordonnees du milieu de la face
-		Vec3 mFace = new Vec3((mAB.getX() + mCD.getX()) / 2, (mAB.getY() + mCD.getY()) / 2,
-				(mAB.getZ() + mCD.getZ()) / 2);
+		Vec3 mFace = findMiddle(mAB, mCD);
 
 		// Verification du nombre d'iterations restantes
 		if (nbIt > 1) {
