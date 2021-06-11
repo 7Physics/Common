@@ -11,6 +11,8 @@ public class Shape {
     /** Liste de vecteurs trois dimentions composant la forme */
     protected List<Vec3> vertices;
 
+    private final Bounds bounds = new Bounds();
+
     /**
      * Construire une forme à partir des vecteurs et une couleur par défaut
      */
@@ -24,6 +26,9 @@ public class Shape {
      */
     public Shape(List<Vec3> vertices) {
         this.vertices = vertices;
+        for (Vec3 vertex : vertices) {
+            bounds.addPoint(vertex);
+        }
     }
 
     /**
@@ -32,6 +37,7 @@ public class Shape {
      */
     protected void addVertex(Vec3 vertex) {
         this.vertices.add(vertex);
+        this.bounds.addPoint(vertex);
     }
 
     /**
@@ -41,23 +47,15 @@ public class Shape {
     public List<Vec3> getVertices() {
         return Collections.unmodifiableList(this.vertices);
     }
-    
+
     /**
-     * Obtenir la coordonnée Y minimale de la forme
-     * afin de pouvoir détecter le sol.
-     * @return la coordonnée Y minimale
+     * Obtenir la boîte englobant la forme.
+     * @return
      */
-    public double getMinY() {
-    	double min = this.vertices.get(0).getY();
-    	for(int i = 1; i<this.vertices.size(); i++) {
-    		double currentY = this.vertices.get(i).getY();
-    		if(currentY < min) {
-    			min = currentY;
-    		}
-    	}
-    	return min;
+    public Bounds getBounds() {
+        return bounds;
     }
-    
+
     /**
      * Créer deux triangles à partir d'un carré.
      * @param a premier sommet du carré
@@ -70,7 +68,7 @@ public class Shape {
     	addVertex(a);
     	addVertex(b);
     	addVertex(c);
-    	
+
     	// Deuxième triangle
     	addVertex(a);
     	addVertex(c);

@@ -4,8 +4,6 @@ import fr.setphysics.common.geom.Shape;
 import fr.setphysics.common.geom.Vec3;
 
 public class Cuboid extends Shape {
-	private double height;
-
     /**
      * Crée une forme de type parallélépipède rectangle.
      * @param width Largeur
@@ -13,8 +11,6 @@ public class Cuboid extends Shape {
      * @param height Hauteur
      */
     public Cuboid(double width, double length, double height) {
-        this.height = height;
-
         /*
         Parallélépipède rectangle A B C D E F G H
         https://ibb.co/mTgNb5q
@@ -47,10 +43,5 @@ public class Cuboid extends Shape {
 
         // Face droite
         addSquare(b,f,e,a);
-    }
-    
-    @Override
-    public double getMinY() {
-    	return this.height/2.0;
     }
 }

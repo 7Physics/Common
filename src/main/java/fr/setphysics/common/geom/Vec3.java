@@ -1,5 +1,7 @@
 package fr.setphysics.common.geom;
 
+import java.util.Objects;
+
 /**
  * Vecteur à trois dimensions
  */
@@ -64,6 +66,31 @@ public class Vec3 implements Cloneable{
     }
 
     /**
+     * Retourne le produit vectoriel de ce vecteur par un autre
+     *
+     * @param other
+     * @return
+     */
+    public Vec3 multiply(Vec3 other) {
+        return new Vec3(
+                this.y * other.z - this.z * other.y,
+                this.z * other.x - this.x * other.z,
+                this.x * other.y - this.y * other.x
+        );
+    }
+
+    /**
+     * Soustraie les coordonnées d'un autre vecteur à ce vecteur.
+     * @param vec3 Vecteur à soustraire.
+     */
+    public Vec3 minus(Vec3 vec3) {
+        this.x -= vec3.x;
+        this.y -= vec3.y;
+        this.z -= vec3.z;
+        return this;
+    }
+
+    /**
      * Ajoute les coordonnées d'un autre vecteur à ce vecteur.
      * @param vec3 Vecteur à ajouter.
      */
@@ -98,6 +125,19 @@ public class Vec3 implements Cloneable{
         this.y *= factor;
         this.z *= factor;
         return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Vec3 vec3 = (Vec3) o;
+        return Double.compare(vec3.x, x) == 0 && Double.compare(vec3.y, y) == 0 && Double.compare(vec3.z, z) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(x, y, z);
     }
 
     /**

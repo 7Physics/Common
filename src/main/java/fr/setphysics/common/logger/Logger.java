@@ -10,8 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Classe utilitaire gérant les logs de 7Physics.
- * Les logs sont sauvegardés dans le répertoire "logs" à la racine du projet appelant.
+ * Classe utilitaire gÃ©rant les logs de 7Physics.
+ * Les logs sont sauvegardÃ©s dans le rÃ©pertoire "logs" Ã  la racine du projet appelant.
  */
 public class Logger {
     private static final DateTimeFormatter TODAY_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -40,8 +40,8 @@ public class Logger {
 
     /**
      * Ajoute un filtre de package.
-     * Tous les logs dont la classe appelante appartient à un package de préfixe {@code packagePrefix}.
-     * @param packagePrefix Prefixe du package à filtrer
+     * Tous les logs dont la classe appelante appartient Ã  un package de prÃ©fixe {@code packagePrefix}.
+     * @param packagePrefix Prefixe du package Ã  filtrer
      */
     public static void addFilter(String packagePrefix) {
         filteredPackage.add(packagePrefix);
@@ -50,7 +50,7 @@ public class Logger {
     /**
      * Supprime un filtre de package.
      * @see Logger#addFilter(String)
-     * @param packagePrefix Prefixe du package à filtrer
+     * @param packagePrefix Prefixe du package Ã  filtrer
      */
     public static void removeFilter(String packagePrefix) {
         filteredPackage.remove(packagePrefix);
@@ -64,8 +64,8 @@ public class Logger {
     }
 
     /**
-     * Log un message de débogage
-     * @param message message à afficher
+     * Log un message de dÃ©bogage
+     * @param message message Ã  afficher
      */
     public static void debug(String message) {
         addMessage(null, "DEBUG", message);
@@ -73,7 +73,7 @@ public class Logger {
 
     /**
      * Log un message d'information
-     * @param message message à afficher
+     * @param message message Ã  afficher
      */
     public static void info(String message) {
         addMessage("34", "INFO", message);
@@ -81,7 +81,7 @@ public class Logger {
 
     /**
      * Log un message de danger
-     * @param message message à afficher
+     * @param message message Ã  afficher
      */
     public static void warning(String message) {
         addMessage("33", "WARNING", message);
@@ -89,7 +89,7 @@ public class Logger {
 
     /**
      * Log un message d'erreur
-     * @param message message à afficher
+     * @param message message Ã  afficher
      */
     public static void error(String message) {
         addMessage("31", "ERROR", message);
@@ -97,9 +97,9 @@ public class Logger {
 
     /**
      * Ajoute un message (sur la sortie standard et dans un fichier).
-     * @param color Numéro du code ANSI d'une couleur ou null pour pas de couleur.
-     * @param type Type du message à ajouter. Ex: WARNING
-     * @param message Message à ajouter.
+     * @param color NumÃ©ro du code ANSI d'une couleur ou null pour pas de couleur.
+     * @param type Type du message Ã  ajouter. Ex: WARNING
+     * @param message Message Ã  ajouter.
      */
     private static void addMessage(String color, String type, String message) {
         StackTraceElement trace = Thread.currentThread().getStackTrace()[3];

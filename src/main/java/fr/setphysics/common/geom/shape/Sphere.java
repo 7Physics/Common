@@ -148,9 +148,4 @@ public class Sphere extends RoundedFace {
 
 		return res;
 	}
-	
-    @Override
-    public double getMinY() {
-    	return this.radius;
-    }
 }

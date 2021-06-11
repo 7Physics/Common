@@ -3,7 +3,7 @@ package fr.setphysics.common.geom;
 /**
  * Position du centre de la forme
  */
-public class Position {
+public class Position implements Cloneable {
     /** horizontalAngle angle sur l'axe des abscisses */
     private double horizontalAngle;
     /** verticalAngle angle sur l'axe des ordonnées */
@@ -75,6 +75,18 @@ public class Position {
         return coords.getZ();
     }
 
+    public void setX(double x) {
+        coords.setX(x);
+    }
+
+    public void setY(double y) {
+        coords.setY(y);
+    }
+
+    public void setZ(double z) {
+        coords.setZ(z);
+    }
+
     /**
      * Changer des coordonnées
      * @param coords Vec3
@@ -139,5 +151,10 @@ public class Position {
     public void rotate(double hAngle, double vAngle) {
         this.horizontalAngle += hAngle;
         this.verticalAngle += vAngle;
+    }
+
+    @Override
+    public Position clone()  {
+        return new Position(coords.clone(), horizontalAngle, verticalAngle);
     }
 }
