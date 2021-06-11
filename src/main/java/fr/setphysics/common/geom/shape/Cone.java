@@ -24,10 +24,10 @@ public class Cone extends RoundedFace {
         Vec3 c = new Vec3(0, -height/2, -radius);
         Vec3 d = new Vec3(-radius, -height/2, 0);
 
-        pointsList.addAll(findPoints(a,b, 3));
-        pointsList.addAll(findPoints(b,c, 3));
-        pointsList.addAll(findPoints(c,d, 3));
-        pointsList.addAll(findPoints(d,a, 3));
+        pointsList.addAll(findPoints(a,b, 5));
+        pointsList.addAll(findPoints(b,c, 5));
+        pointsList.addAll(findPoints(c,d, 5));
+        pointsList.addAll(findPoints(d,a, 5));
 
         pointsList.forEach(p -> addVertex(p));
 

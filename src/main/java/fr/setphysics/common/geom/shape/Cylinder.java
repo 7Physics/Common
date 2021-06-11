@@ -28,10 +28,10 @@ public class Cylinder extends RoundedFace {
         Vec3 g = new Vec3(0, height/2, -radius);
         Vec3 h = new Vec3(-radius, height/2, 0);
 
-        pointsList.addAll(findPoints(a,b,e,f, 3));
-        pointsList.addAll(findPoints(b,c,f,g, 3));
-        pointsList.addAll(findPoints(c,d,g,h, 3));
-        pointsList.addAll(findPoints(d,a,h,e, 3));
+        pointsList.addAll(findPoints(a,b,e,f, 5));
+        pointsList.addAll(findPoints(b,c,f,g, 5));
+        pointsList.addAll(findPoints(c,d,g,h, 5));
+        pointsList.addAll(findPoints(d,a,h,e, 5));
 
         pointsList.forEach(p -> addVertex(p));
 
