@@ -11,7 +11,7 @@ public class Shape {
     /** Liste de vecteurs trois dimentions composant la forme */
     protected List<Vec3> vertices;
 
-    private final Bounds bounds = new Bounds();
+    private final BoundingBox boundingBox = new BoundingBox();
 
     /**
      * Construire une forme à partir des vecteurs et une couleur par défaut
@@ -27,7 +27,7 @@ public class Shape {
     public Shape(List<Vec3> vertices) {
         this.vertices = vertices;
         for (Vec3 vertex : vertices) {
-            bounds.addPoint(vertex);
+            boundingBox.addPoint(vertex);
         }
     }
 
@@ -37,7 +37,7 @@ public class Shape {
      */
     protected void addVertex(Vec3 vertex) {
         this.vertices.add(vertex);
-        this.bounds.addPoint(vertex);
+        this.boundingBox.addPoint(vertex);
     }
 
     /**
@@ -52,8 +52,8 @@ public class Shape {
      * Obtenir la boîte englobant la forme.
      * @return
      */
-    public Bounds getBounds() {
-        return bounds;
+    public BoundingBox getBoundingBox() {
+        return boundingBox;
     }
 
     /**

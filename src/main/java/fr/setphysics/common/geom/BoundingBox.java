@@ -1,11 +1,14 @@
 package fr.setphysics.common.geom;
 
-public class Bounds implements Cloneable {
+/**
+ * Classe représent la boîte englobant un objet.
+ */
+public class BoundingBox implements Cloneable {
     private double minX, maxX;
     private double minY, maxY;
     private double minZ, maxZ;
 
-    public Bounds(double minX, double maxX, double minY, double maxY, double minZ, double maxZ) {
+    public BoundingBox(double minX, double maxX, double minY, double maxY, double minZ, double maxZ) {
         this.minX = minX;
         this.maxX = maxX;
         this.minY = minY;
@@ -14,9 +17,13 @@ public class Bounds implements Cloneable {
         this.maxZ = maxZ;
     }
 
-    public Bounds() {
+    public BoundingBox() {
     }
 
+    /**
+     * Adapte le boîte de façon à contenir le point.
+     * @param point Point
+     */
     void addPoint(Vec3 point) {
         if(point.getX() < minX) {
             minX = point.getX();
@@ -45,6 +52,9 @@ public class Bounds implements Cloneable {
         return maxX;
     }
 
+    /**
+     * @return Largeur de la boîte (axe X)
+     */
     public double getWidth() {
         return maxX - minX;
     }
@@ -57,6 +67,9 @@ public class Bounds implements Cloneable {
         return maxY;
     }
 
+    /**
+     * @return Hauteur de la boîte (axe Y)
+     */
     public double getHeight() {
         return maxY - minY;
     }
@@ -69,24 +82,40 @@ public class Bounds implements Cloneable {
         return maxZ;
     }
 
+    /**
+     * @return Longueur de la boîte (axe Z)
+     */
     public double getLength() {
         return maxZ - minZ;
     }
 
-    public boolean intersect(Bounds other) {
+    /**
+     * @param other Autre boîte avec laquelle tester l'intersection
+     * @return true si cette boîte intersecte avec other.
+     */
+    public boolean intersect(BoundingBox other) {
         return (this.minX <= other.maxX && this.maxX >= other.minX) &&
                 (this.minY <= other.maxY && this.maxY >= other.minY) &&
                 (this.minZ <= other.maxZ && this.maxZ >= other.minZ);
     }
 
+    /**
+     * @param point Point dont il faut tester l'appartenance
+     * @return true si cette boîte contient point.
+     */
     public boolean containsPoint(Vec3 point) {
         return (point.getX() >= this.minX && point.getX() <= this.maxX) &&
                 (point.getY() >= this.minY && point.getY() <= this.maxY) &&
                 (point.getZ() >= this.minZ && point.getZ() <= this.maxZ);
     }
 
-    public Bounds translate(Vec3 translation) {
-        Bounds rep = this.clone();
+    /**
+     * Renvoie une nouvelle boîte correspondant à cette boîte translatée
+     * @param translation Translation
+     * @return Nouvelle boîte translatée
+     */
+    public BoundingBox translate(Vec3 translation) {
+        BoundingBox rep = this.clone();
         rep.minX += translation.getX();
         rep.maxX += translation.getX();
 
@@ -99,8 +128,8 @@ public class Bounds implements Cloneable {
     }
 
     @Override
-    public Bounds clone() {
-        return new Bounds(minX, maxX, minY, maxY, minZ, maxZ);
+    public BoundingBox clone() {
+        return new BoundingBox(minX, maxX, minY, maxY, minZ, maxZ);
     }
 
     @Override
