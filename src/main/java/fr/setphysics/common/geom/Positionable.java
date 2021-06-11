@@ -1,8 +1,5 @@
 package fr.setphysics.common.geom;
 
-import fr.setphysics.common.geom.Position;
-import fr.setphysics.common.geom.Vec3;
-
 public interface Positionable {
     /**
      * Retourne la position de l'objet
